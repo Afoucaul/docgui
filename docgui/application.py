@@ -4,15 +4,17 @@ from . import utils
 
 
 class Application(tk.Tk):
-    def __init__(self, path):
+    def __init__(self, path_or_module):
         super().__init__()
 
-        self.path = path
-        self.script = utils.load_module(self.path, 'script')
+        if type(path_or_module).__name__ == 'module':
+            self.script = path_or_module
+        else:
+            self.script = utils.load_module(path_or_module, 'script')
+
         self.commands = usage_parser.get_commands(self.script.__doc__)
 
         self.main_frame = MainFrame(self, self.commands, self.run_command)
-
         self.main_frame.pack()
 
     def run(self):

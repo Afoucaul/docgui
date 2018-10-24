@@ -5,3 +5,8 @@ __version__ = "1.0.0"
 usage_parser = import_module(".usage_parser", __name__)
 application = import_module(".application", __name__)
 utils = import_module(".utils", __name__)
+
+
+def guify():
+    import __main__ as script
+    application.Application(script).run()
