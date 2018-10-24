@@ -24,18 +24,6 @@ def get_commands(doc):
             for cmd in patterns.flat(Required)]
 
 
-def walk_tree(tree, function):
-    if hasattr(tree, 'children'):
-        function(tree)
-        [function(c) for c in tree.children]
-
-    elif isinstance(tree, list):
-        [function(c) for c in tree]
-
-    else:
-        function(tree)
-
-
 class CommandWrapper:
     def __init__(self, name, args, options):
         self.name = name
